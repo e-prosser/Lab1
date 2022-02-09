@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Search results:
+{% endblock %}
+
+{% block body %}
+  <div class = "col-md-6 p-3 mx-auto">
+    <div class="table-responsive-md">
+      <table class="table table-bordered table-striped bg">
+        <thead>
+          <tr class = "white-bg">
+    		    <th scope="col">ISBN</th>
+    		    <th scope="col">Book </th>
+    		    <th scope="col">Author</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for data in ans %}
+            <tr>
+              {% for element in range(0,3) %}
+              <td>
+                <a href="{{ url_for('details', isbn=data[0]) }}">
+                  {{ data[element] }}
+                </a>
+              </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+{% endblock %}

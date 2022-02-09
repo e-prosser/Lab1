@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Book Details:
+{% endblock %}
+
+{% block body %}
+  <div class = "col-md-6 p-3 mx-auto">
+    <div class="table-responsive-md">
+      <table class="table table-bordered table-striped bg">
+        <thead>
+          <tr class = "white-bg">
+            <th scope="col">ISBN</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Year</th>
+            <th scope="col">Google Book Rating</th>
+            <th scope="col">Total Ratings</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ res.isbn }}</td><td>{{ res.title }}</td><td>{{ res.author }}</td>
+              <td>{{ res.year }}</td><td>{{ average }}</td><td>{{ count }}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+	<form class="form-example" action="{{ url_for('review', isbn=res[0]) }}" method="post">
+    	<h6>Review this Book:</h6>
+    	<div class="form-group">
+	    	<label>Rating:</label>
+	    	<select class="form-control" name="rating">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Write a Review:</label>
+	        <textarea class="form-control" name="content" rows="4"></textarea>
+    	</div>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+    <br/>
+    <div class="container">
+    	<ul class="list-group">
+    	{% for review in reviews %}
+    		<li class="list-group-item text-center m-3">
+				Someone rated it {{ review[0] }}; and said {{ review[1] }}
+    		</li>
+    	{% endfor %}
+    	</ul>
+    </div>
+{% endblock %}

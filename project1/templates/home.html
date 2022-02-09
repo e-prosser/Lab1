@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Welcome {{ username }}!
+{% endblock %}
+
+{% block body %}
+<h1>Search for your book below</h1>
+	<form class="form-example" action="{{ url_for('results') }}" method="post">
+    	<h6>Enter any book details:</h6>
+    	<div class="form-group">
+        	<input type="text" class="form-control" name="isbn" placeholder="ISBN code">
+    	</div>
+    	<div class="form-group">
+        	<input type="text" class="form-control" name="name" placeholder="Book title">
+    	</div>
+    	<div class="form-group">
+        	<input type="text" class="form-control" name="author" placeholder="Author">
+    	</div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+{% endblock %}
